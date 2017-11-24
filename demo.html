@@ -26,7 +26,13 @@
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Content-Length": 1322
             }
-        }).success().fail().complete();
+        }).success((data) => {
+            console.log(data);
+        }).fail((err) => {
+            console.log(err);
+        }).complete(() => {
+
+        });
 
         function parseSearch(mySearch) {
             var _search = mySearch.slice(1, );
