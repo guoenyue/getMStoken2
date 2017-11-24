@@ -25,7 +25,7 @@
         getToken()
 
         function getMyProfile() {
-            var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/?api-version=4.1-preview`;
+            var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
             $.ajax({
                 url: postUrl,
                 type: "GET",
@@ -56,7 +56,7 @@
                 type: "POST",
                 data: postDataToGetToken,
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
+                    //"Content-Type": "application/x-www-form-urlencoded",
                     "Content-Length": 1322
                 }
             }).success((data) => {
@@ -75,7 +75,7 @@
                 type: "POST",
                 data: postDataToRefreshToken,
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
+                    //"Content-Type": "application/x-www-form-urlencoded",
                     "Content-Length": 1654
                 }
             }).success((data) => {
