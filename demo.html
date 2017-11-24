@@ -47,7 +47,6 @@
             refresh_token = data.refresh_token;
             access_token = data.refresh_token;
             console.log("包含token的对象是", data);
-            getMyAccount();
         }
 
 
@@ -64,6 +63,8 @@
                 console.log(data);
                 setToken(data);
                 refreshToken();
+                setToken(data);
+                getMyAccount();
             }).fail((err) => {
                 console.log(err);
             }).complete(() => {
