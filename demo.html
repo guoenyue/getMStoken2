@@ -25,7 +25,7 @@
         getToken()
 
         function getMyProfile() {
-            var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/${guid()}?api-version=4.1-preview`;
+            var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/?api-version=4.1-preview`;
             $.ajax({
                 url: postUrl,
                 type: "GET",
