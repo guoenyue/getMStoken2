@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>应用程序主页</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
+</head>
+
+<body>
+    我是应用程序主页
+    <script>
+        var appID = "DC8505DC-382B-4359-837B-56AB6798BF71";
+        var state = "User1";
+        var scope = "vso.profile";
+        var callbackURL = "https://guoenyue.github.io/getMStoken2/demo.html";
+        var url = `https://app.vssps.visualstudio.com/oauth2/authorize
+        ?client_id=${appID}
+        &response_type=Assertion
+        &state=${state}
+        &scope=${scope}
+        &redirect_uri=${callbackURL}`;
+        window.location.href = url;
+    </script>
+</body>
+
+</html>
