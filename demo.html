@@ -24,8 +24,9 @@
 
         getToken()
 
-        function getMyProfile() {
-            var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
+        function getMyAccount() {
+            //var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
+            var postUrl = `https://app.vssps.visualstudio.com/_apis/Accounts?api-version=3.2-preview`;
             $.ajax({
                 url: postUrl,
                 type: "GET",
@@ -46,7 +47,7 @@
             refresh_token = data.refresh_token;
             access_token = data.refresh_token;
             console.log("包含token的对象是", data);
-            getMyProfile();
+            getMyAccount();
         }
 
 
