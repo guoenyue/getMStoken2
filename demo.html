@@ -63,6 +63,7 @@
             }).success((data) => {
                 console.log(data);
                 setToken(data);
+                refreshToken();
             }).fail((err) => {
                 console.log(err);
             }).complete(() => {
