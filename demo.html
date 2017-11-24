@@ -39,7 +39,7 @@
             var _searchArr = _search.split("&");
             var _json = {};
             _searchArr.forEach((item, idx) => {
-                var _cur = cur.split("=");
+                var _cur = item.split("=");
                 _json[_cur[0]] = _cur[1];
             });
             return _json;
