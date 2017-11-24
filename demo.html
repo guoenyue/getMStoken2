@@ -57,8 +57,8 @@
                 type: "POST",
                 data: postDataToGetToken,
                 headers: {
-                    //"Content-Type": "application/x-www-form-urlencoded",
-                    "Content-Length": 1322
+                    "contentType": "application/x-www-form-urlencoded",
+                    "contentLength": 1322
                 }
             }).success((data) => {
                 console.log(data);
@@ -76,8 +76,8 @@
                 type: "POST",
                 data: postDataToRefreshToken,
                 headers: {
-                    //"Content-Type": "application/x-www-form-urlencoded",
-                    "Content-Length": 1654
+                    "contentType": "application/x-www-form-urlencoded",
+                    "contentLength": 1654
                 }
             }).success((data) => {
                 console.log(data);
