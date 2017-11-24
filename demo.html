@@ -22,9 +22,7 @@
         var accountName = "";
         var memberId = "";
 
-        getToken(function() {
-            getMyAccount();
-        });
+        getToken();
 
         function getMyAccount() {
             //var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
@@ -65,7 +63,9 @@
             refresh_token = data.refresh_token;
             access_token = data.access_token;
             console.log("包含token的对象是", data);
-            getMyAccount();
+            getProfiles(function() {
+                getMyAccount();
+            });
         }
 
 
