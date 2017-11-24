@@ -19,14 +19,16 @@
         var access_token = '';
         var client_assertion = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im9PdmN6NU1fN3AtSGpJS2xGWHo5M3VfVjBabyJ9.eyJjaWQiOiI3NTllNjIzZC1iNGYxLTRmODMtOTM5NC1jYmU5YTgwZTM4OTUiLCJjc2kiOiI2Nzk2NmY0ZC1kZjEzLTQ3NGUtYTNiZS02MjY5ZjlkMjI2NzkiLCJuYW1laWQiOiJmYTg5YjYyMC01YWFhLTZmMTctOTU0NC01YjgxYWY2NjhlNDIiLCJpc3MiOiJhcHAudnNzcHMudmlzdWFsc3R1ZGlvLmNvbSIsImF1ZCI6ImFwcC52c3Nwcy52aXN1YWxzdHVkaW8uY29tIiwibmJmIjoxNTExNTA5NzI5LCJleHAiOjE2NjkyNzYxMjl9.UNXqKqNskXZmVuOkT3SrvNXv3We58H-IJfbcG7M1dSeViagpzkKBHhe8zzvrPbhdK1hEg-T7lG66riHxVJgtVUB8qwApj1sqZ94T8pzREtIQVpcSkJiuWYleOnWHY9ShMsMOYlKzPk4fGWZIDUq-Y3sS5wMHEf_tLpcTHDzhRg1-UU-B0igisbwNqqyOwD40UQJB6G5PIr_DzlJdVqJtiJs3jYoDAzUO6j-S_Pf12Vz4ax3DTY-oHVrpa803fIKOsuyNVBc17Kl0g12vgDbeJ491Ja6DjECOgZWYaQqIMij1vEWswlUWKmC7wSB3Xcs7GScI9RCJEduESyjwwQRwBA";
         var postDataToGetToken = `client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=${client_assertion}&grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${code}&redirect_uri=${returnUrl}`;
-        var postDataToRefreshToken = `client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=${client_assertion}&grant_type=refresh_token&assertion=${refresh_token}&redirect_uri=${returnUrl}`;
-        var accountName = "playerauctions";
+        var accountName = "";
+        var memberId = "";
 
-        getToken()
+        getToken(function() {
+            getMyAccount();
+        });
 
         function getMyAccount() {
             //var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
-            var postUrl = `https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
+            var postUrl = `https://app.vssps.visualstudio.com/_apis/Accounts?memberId=${memberId}&api-version=3.2-preview`;
             $.ajax({
                 url: postUrl,
                 type: "GET",
@@ -41,7 +43,23 @@
             }).complete(() => {});
         }
 
-
+        function getProfiles(callback) {
+            var postUrl = `https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
+            $.ajax({
+                url: postUrl,
+                type: "GET",
+                dataType: "json",
+                headers: {
+                    Authorization: "Bearer " + access_token
+                }
+            }).success((data) => {
+                console.log(data);
+                memberId = data.id;
+                typeof callback == "function" && callback();
+            }).fail((err) => {
+                console.log(err);
+            }).complete(() => {});
+        }
 
         function setToken(data) {
             refresh_token = data.refresh_token;
@@ -71,6 +89,7 @@
         };
 
         function refreshToken() {
+            var postDataToRefreshToken = `client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=${client_assertion}&grant_type=refresh_token&assertion=${refresh_token}&redirect_uri=${returnUrl}`;
             $.ajax({
                 url: "https://app.vssps.visualstudio.com/oauth2/token",
                 type: "POST",
