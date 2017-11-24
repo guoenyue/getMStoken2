@@ -32,7 +32,7 @@
                 type: "GET",
                 dataType: "json",
                 headers: {
-                    //    Authorization: "Bearer " + access_token
+                    Authorization: "Bearer " + access_token
                 }
             }).success((data) => {
                 console.log(data);
@@ -45,7 +45,7 @@
 
         function setToken(data) {
             refresh_token = data.refresh_token;
-            access_token = data.refresh_token;
+            access_token = data.access_token;
             console.log("包含token的对象是", data);
             getMyAccount();
         }
