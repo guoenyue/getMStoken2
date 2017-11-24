@@ -26,7 +26,7 @@
 
         function getMyAccount() {
             //var postUrl = `https://${accountName}.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
-            var postUrl = `https://app.vssps.visualstudio.com/_apis/Accounts?api-version=3.2-preview`;
+            var postUrl = `https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=1.0`;
             $.ajax({
                 url: postUrl,
                 type: "GET",
