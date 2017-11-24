@@ -6,11 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>回调页面</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
 </head>
 
 <body>
     <script>
-        console.log(window.location);
+        //console.log(window.location);
+        var srarch = window.location.search;
+        console.log(parseSearch(search));
+
+
+
+
+        function parseSearch(mySearch) {
+            var _search = mySearch.slice(1, );
+            var _searchArr = _search.split("&");
+            var _json = {};
+            _searchArr.forEach((item, idx) => {
+                item.forEach((cur, index) => {
+                    var _cur = cur.split("=");
+                    _json[_cur[0]] = _cur[1];
+                });
+            });
+            return _json;
+        }
     </script>
 </body>
 
