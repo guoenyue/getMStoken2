@@ -13,10 +13,20 @@
     <script>
         //console.log(window.location);
         var srarch = window.location.search;
+        var code = parseSearch(search)["code"];
+        var returnUrl = "https://guoenyue.github.io/getMStoken2/demo.html";
         console.log(parseSearch(search));
-
-
-
+        var client_assertion = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im9PdmN6NU1fN3AtSGpJS2xGWHo5M3VfVjBabyJ9.eyJjaWQiOiJkYzg1MDVkYy0zODJiLTQzNTktODM3Yi01NmFiNjc5OGJmNzEiLCJjc2kiOiI1NThkZGY2OS03OWM1LTQwYjYtOGRkZS0xMGZjNGNlMDRmZjAiLCJuYW1laWQiOiJmYTg5YjYyMC01YWFhLTZmMTctOTU0NC01YjgxYWY2NjhlNDIiLCJpc3MiOiJhcHAudnNzcHMudmlzdWFsc3R1ZGlvLmNvbSIsImF1ZCI6ImFwcC52c3Nwcy52aXN1YWxzdHVkaW8uY29tIiwibmJmIjoxNTExNDg5MjQzLCJleHAiOjE2NjkyNTU2NDN9.KCknHsYNq8L7XY1WzL7Jmoox0kYUdw-CuyAf_cwZbwMxZo8VfADE4ZmKHmaALkG6QTug2SIULiDkpg_rOfPspayIox7eQRZuHBE6kzaw34Js_FUifHK9WMXysZi1qBqwOhgiYZejpkHT5CBbqX3ZlGhRczPYMvxRyB3PKvXt4OpJHMa1HuNCyARbBqkdOu_v5UkjLZTKssuN66pYF7hXtg9wL7CPbXOtT95p1kqNN1UEXRlEpViDOZ9Vff7UVZUfLJiL3x-ofe-OxDb8s7nmUGfJZD0X1TCFyr8WVhwjnUn63_04obHci5W_9FXG2JqZHD4lElaxR17j4SWg-hO3dQ";
+        var postData = `client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=${client_assertion}&grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${code}&redirect_uri=${returnUrl}`;
+        $.ajax({
+            url: "https://app.vssps.visualstudio.com/oauth2/token",
+            type: "POST",
+            data: postData,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Content-Length": 1322
+            }
+        }).success().fail().complete();
 
         function parseSearch(mySearch) {
             var _search = mySearch.slice(1, );
